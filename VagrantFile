@@ -1,0 +1,65 @@
+Vagrant.configure("2") do |config|
+  config.vm.provider "hyperv"
+  config.vm.provision :shell, path: "provision.sh"
+  config.vm.network "public_network", bridge: "Internet - External"
+  
+  config.vm.define "kubmaster" do |kubmaster|
+    kubmaster.vm.box = "centos/7"
+    kubmaster.vm.hostname = 'kubmaster'
+    kubmaster.vm.box_url = "centos/7"
+    kubmaster.vm.provider :hyperv do |v|
+      v.enable_virtualization_extensions = true
+      v.differencing_disk = true
+      v.memory = 1024
+      v.vmname = 'kubmaster'
+    end
+  end
+
+  config.vm.define "kub1" do |kub1|
+    kub1.vm.box = "centos/7"
+    kub1.vm.hostname = 'kub1'
+    kub1.vm.box_url = "centos/7"
+    kub1.vm.provider :hyperv do |v|
+      v.enable_virtualization_extensions = true
+      v.differencing_disk = true
+      v.memory = 512
+      v.vmname = 'kub1'
+    end
+  end
+
+  config.vm.define "kub2" do |kub2|
+    kub2.vm.box = "centos/7"
+    kub2.vm.hostname = 'kub2'
+    kub2.vm.box_url = "centos/7"
+    kub2.vm.provider :hyperv do |v|
+      v.enable_virtualization_extensions = true
+      v.differencing_disk = true
+      v.memory = 512
+      v.vmname = 'kub2'
+    end
+  end
+
+  config.vm.define "kub3" do |kub3|
+    kub3.vm.box = "centos/7"
+    kub3.vm.hostname = 'kub3'
+    kub3.vm.box_url = "centos/7"
+    kub3.vm.provider :hyperv do |v|
+      v.enable_virtualization_extensions = true
+      v.differencing_disk = true
+      v.memory = 512
+      v.vmname = 'kub3'
+    end
+  end
+
+  config.vm.define "kub4" do |kub4|
+    kub4.vm.box = "centos/7"
+    kub4.vm.hostname = 'kub4'
+    kub4.vm.box_url = "centos/7"
+    kub4.vm.provider :hyperv do |v|
+      v.enable_virtualization_extensions = true
+      v.differencing_disk = true
+      v.memory = 512
+      v.vmname = 'kub4'
+    end
+  end
+end
